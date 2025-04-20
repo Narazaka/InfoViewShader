@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7371379484940637923}
   - component: {fileID: 7215003581324626587}
   - component: {fileID: 5475036961322430601}
-  - component: {fileID: 4454418407906362613}
   m_Layer: 0
   m_Name: InfoView
   m_TagString: Untagged
@@ -85,24 +84,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1818360609 &4454418407906362613
-RotationConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3871163872994059733}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 2367153500920127050, guid: f14d2a3ed0529b7448d6dff0bf8ab5e4,
-      type: 3}
-    weight: 1

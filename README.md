@@ -26,7 +26,6 @@ Exampleフォルダに例があります。
 
 1. Cubeを描画される可能性のある領域を覆う大きさにして配置する。
 2. InfoViewShader/BillboardWithOffsetで情報ウインドウを、InfoViewShader/BillboardConnectLineで指示線のマテリアルを作り、Cubeに適用する。
-3. 常にワールド座標で回転が0になるようRotation Constraintのprefab hack等で調整する。
 
 ## License
 
