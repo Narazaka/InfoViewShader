@@ -31,12 +31,11 @@ v2f vert (appdata v)
         length(unity_ObjectToWorld._m02_m12_m22)
     );
     float3 rootPos = unity_ObjectToWorld._m03_m13_m23;
-    // float2 screenCenter = _Center.xy;
     float3 rootToCamera = _WorldSpaceCameraPos - rootPos;
     float3 up = float3(0, 1, 0);
     // right: normal to rootToCamera and up
     float3 right = normalize(cross(rootToCamera, up));
-                
+
     float3 offsetPos = right * _OffsetX + up * _OffsetY;
 
     float3 rotRight = normalize(offsetPos);
@@ -55,10 +54,10 @@ v2f vert (appdata v)
     float3 vertexPos = float3(v.vertex.x * length(offsetPos), v.vertex.y * _LineWidth, 0);
     vertexPos = mul(rotation, vertexPos);
     vertexPos += offsetPos * 0.5;
-    vertexPos = float3(vertexPos.x / scale.x, vertexPos.y / scale.y, vertexPos.z / scale.z);
+    float4 worldPos = float4(vertexPos + rootPos, 1);
 
     v2f o;
-    o.vertex = UnityObjectToClipPos(vertexPos);
+    o.vertex = mul(UNITY_MATRIX_VP, worldPos);
     UNITY_TRANSFER_FOG(o,o.vertex);
     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
     return o;
