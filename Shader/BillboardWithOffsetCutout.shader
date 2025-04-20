@@ -25,7 +25,7 @@ Shader "InfoViewShader/BillboardWithOffset Cutout"
     }
     SubShader
     {
-        Tags { "RenderType"="TransparentCutout" "Queue"="Transparent-1" }
+        Tags { "RenderType"="TransparentCutout" "Queue"="Transparent-1" "VRCFallback"="Hidden" }
         LOD 100
 
         ZWrite [__ZWrite]

@@ -23,7 +23,7 @@ Shader "InfoViewShader/BillboardConnectLine"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Transparent-2" }
+        Tags { "RenderType"="Opaque" "Queue"="Transparent-2" "VRCFallback"="Hidden" }
         LOD 100
 
         ZWrite [__ZWrite]

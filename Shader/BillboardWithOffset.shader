@@ -24,7 +24,7 @@ Shader "InfoViewShader/BillboardWithOffset"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Transparent-1" }
+        Tags { "RenderType"="Opaque" "Queue"="Transparent-1" "VRCFallback"="Hidden" }
         LOD 100
 
         ZWrite [__ZWrite]
