@@ -2,7 +2,7 @@
   "name": "net.narazaka.unity.info-view-shader",
   "version": "1.0.0",
   "displayName": "Info View Shader",
-  "description": "Info View Shader",
+  "description": "キャラ情報表示みたいなUIを作れるシェーダー",
   "author": {
     "name": "Narazaka",
     "url": "https://github.com/Narazaka"
@@ -10,9 +10,5 @@
   "license": "Zlib",
   "type": "tool",
   "url" : "https://github.com/Narazaka/InfoViewShader.git",
-  "unity": "2022.3",
-  "vpmDependencies": {
-    "com.vrchat.avatars": ">=3.7.5",
-    "com.vrchat.worlds": ">=3.7.5"
-  }
+  "unity": "2022.3"
 }
