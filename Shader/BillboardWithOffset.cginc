@@ -32,14 +32,19 @@ v2f vert (appdata v)
         length(unity_ObjectToWorld._m02_m12_m22)
     );
     float3 rootPos = unity_ObjectToWorld._m03_m13_m23;
-    float3 rootToCamera = _WorldSpaceCameraPos - rootPos;
+#if defined(USING_STEREO_MATRICES)
+    float3 cameraPos = (unity_StereoWorldSpaceCameraPos[0] + unity_StereoWorldSpaceCameraPos[1]) * 0.5;
+#else
+    float3 cameraPos = _WorldSpaceCameraPos;
+#endif
+    float3 rootToCamera = cameraPos - rootPos;
     float3 up = float3(0, 1, 0);
     // right: normal to rootToCamera and up
     float3 right = normalize(cross(rootToCamera, up));
 
     float3 offsetPos = right * _OffsetX + up * _OffsetY;
     float3 rootWithOffsetPos = rootPos + offsetPos;
-    float3 rootWithOffsetToCamera = _WorldSpaceCameraPos - rootWithOffsetPos;
+    float3 rootWithOffsetToCamera = cameraPos - rootWithOffsetPos;
 
     // right: normal to rootWithOffsetToCamera and up
     float3 rightWithOffset = normalize(cross(rootWithOffsetToCamera, up));
