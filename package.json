@@ -1,6 +1,6 @@
 {
   "name": "net.narazaka.unity.info-view-shader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Info View Shader",
   "description": "キャラ情報表示みたいなUIを作れるシェーダー",
   "author": {
