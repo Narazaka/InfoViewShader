@@ -21,6 +21,8 @@ Shader "InfoViewShader/BillboardWithOffset"
         __Comp ("Comp", Float) = 8 // Always
         [Enum(UnityEngine.Rendering.StencilOp)]
         __Pass ("Pass", Float) = 0 // Keep
+        __ReadMask ("Read Mask", Float) = 255
+        __WriteMask ("Write Mask", Float) = 255
     }
     SubShader
     {
@@ -34,6 +36,8 @@ Shader "InfoViewShader/BillboardWithOffset"
             Ref [__Ref]
             Comp [__Comp]
             Pass [__Pass]
+            ReadMask [__ReadMask]
+            WriteMask [__WriteMask]
         }
 
         Pass
