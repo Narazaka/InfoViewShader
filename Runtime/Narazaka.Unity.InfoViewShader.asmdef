@@ -1,0 +1,23 @@
+{
+    "name": "Narazaka.Unity.InfoViewShader",
+    "rootNamespace": "",
+    "references": [
+        "VRC.SDKBase",
+        "nadena.dev.ndmf.runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "1.7",
+            "define": "NARAZAKA_INFOVIEWSHADER_HAS_NDMF_1_7"
+        }
+    ],
+    "noEngineReferences": false
+}

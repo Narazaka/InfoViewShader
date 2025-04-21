@@ -22,6 +22,16 @@ https://github.com/Narazaka/InfoViewShader/releases/latest から `net.narazaka.
 
 ## Usage
 
+### NDMF(Modular Avatar)の入ったVRChat アバタープロジェクトの場合
+
+事前にNDMFまたはModular Avatarをインストールして下さい。
+
+1. アバターかアバター内のオブジェクトを右クリックして `InfoViewShader→Create InfoView`で1つの情報表示が作れます。
+     - Add Componentから`InfoView`コンポーネントを追加する方法も可能です。
+2. InfoViewコンポーネントを設定して下さい。
+
+### 一般的な場合
+
 Exampleフォルダに例があります。
 
 1. Cubeを描画される可能性のある領域を覆う大きさにして配置する。

@@ -1,0 +1,28 @@
+{
+    "name": "Narazaka.Unity.InfoViewShader.Editor.NDMF",
+    "rootNamespace": "",
+    "references": [
+        "VRC.SDKBase",
+        "nadena.dev.ndmf",
+        "Narazaka.Unity.InfoViewShader"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "NARAZAKA_INFOVIEWSHADER_HAS_NDMF"
+    ],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "1.5",
+            "define": "NARAZAKA_INFOVIEWSHADER_HAS_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}
