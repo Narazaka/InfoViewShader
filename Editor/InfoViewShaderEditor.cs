@@ -193,6 +193,10 @@ namespace Narazaka.Unity.InfoViewShader.Editor
                 EditorGUI.EndDisabledGroup();
             }
             serializedObject.ApplyModifiedProperties();
+
+#if HAS_NDMF_LOCALIZATION
+            nadena.dev.ndmf.ui.LanguageSwitcher.DrawImmediate();
+#endif
         }
 
         void DrawHeader(string title)
