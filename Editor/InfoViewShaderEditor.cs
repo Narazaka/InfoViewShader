@@ -15,6 +15,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
         SerializedProperty offset;
         SerializedProperty scale;
         SerializedProperty lineWidth;
+        SerializedProperty hideInLocal;
         RenderSettingGUI renderSetting;
         ShaderSettingGUI shaderSetting;
         ShaderSettingGUI lineShaderSetting;
@@ -60,6 +61,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             offset = serializedObject.FindProperty(nameof(InfoView.offset));
             scale = serializedObject.FindProperty(nameof(InfoView.scale));
             lineWidth = serializedObject.FindProperty(nameof(InfoView.lineWidth));
+            hideInLocal = serializedObject.FindProperty(nameof(InfoView.hideInLocal));
             renderSetting = new RenderSettingGUI(serializedObject.FindProperty(nameof(InfoView.renderSetting)));
             shaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.shaderSetting)));
             lineShaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.lineShaderSetting)));
@@ -79,6 +81,8 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             public static istring Scale => new istring("Scale", "スケール");
             public static istring ScaleDescription => new istring("Plate Scale", "プレートのスケール");
             public static istring LineWidth => new istring("Line Width", "ラインの幅");
+            public static istring VRChatSettings => new istring("VRChat Settings", "VRChat設定");
+            public static istring HideInLocal => new istring("Hide in Local", "ローカルで非表示");
             public static istring Cutoff => new istring("Alpha Cutoff", "Alpha Cutoff");
             public static istring Plate => new istring("Plate", "プレート");
             public static istring Line => new istring("Line", "ライン");
@@ -148,6 +152,13 @@ namespace Narazaka.Unity.InfoViewShader.Editor
                 EditorGUILayout.PropertyField(lineCutoff, T.Cutoff.GUIContent);
             }
             EditorGUI.indentLevel--;
+
+#if NARAZAKA_INFOVIEWSHADER_HAS_MA
+            DrawHeader(T.VRChatSettings);
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(hideInLocal, T.HideInLocal.GUIContent);
+            EditorGUI.indentLevel--;
+#endif
 
             EditorGUILayout.Space();
             DrawHeader(T.RenderSetting);

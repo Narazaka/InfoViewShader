@@ -20,6 +20,11 @@
             "name": "nadena.dev.ndmf",
             "expression": "1.3",
             "define": "HAS_NDMF_LOCALIZATION"
+        },
+        {
+            "name": "nadena.dev.modular-avatar",
+            "expression": "1.10",
+            "define": "NARAZAKA_INFOVIEWSHADER_HAS_MA"
         }
     ],
     "noEngineReferences": false

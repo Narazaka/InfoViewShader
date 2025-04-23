@@ -21,6 +21,7 @@ namespace Narazaka.Unity.InfoViewShader
         public Vector2 offset = Vector2.one;
         public Vector2 scale = Vector2.one;
         public float lineWidth = 0.01f;
+        public bool hideInLocal = false;
         public RenderSetting renderSetting = new RenderSetting();
         public ShaderSetting shaderSetting = new ShaderSetting { renderQueue = 2999 };
         public ShaderSetting lineShaderSetting = new ShaderSetting { renderQueue = 2998 };
