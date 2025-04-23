@@ -30,6 +30,8 @@ https://github.com/Narazaka/InfoViewShader/releases/latest から `net.narazaka.
      - Add Componentから`InfoView`コンポーネントを追加する方法も可能です。
 2. InfoViewコンポーネントを設定して下さい。
 
+- Modular Avatarをインストールすると、ローカル環境で非表示にする機能が使えるようになります。
+
 ### 一般的な場合
 
 Exampleフォルダに例があります。
