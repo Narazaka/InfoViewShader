@@ -42,7 +42,7 @@ Exampleフォルダに例があります。
 <details>
 <summary>ユースケース</summary>
 
-1つから配置可能です。好きな画像を作って説明して下さい。画像が512x256くらいのサイズ、スケール X=0.3, Y=0.15くらいがおすすめです。
+1つから配置可能です。好きな画像を作ってキャラクター説明して下さい。画像が512x256くらいのサイズ、スケール X=0.3, Y=0.15くらいがおすすめです。
 
 <img alt="thumbnail" src="docs~/InfoViewShader_usecase_basic.png" width="512">
 
