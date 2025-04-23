@@ -69,6 +69,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
 
         class T
         {
+            public static istring RequireNDMF1_5 => new istring("Requires NDMF 1.5 or later", "動作のためにはNDMF 1.5以降が必要です");
             public static istring MeshIsNotCube => new istring("Mesh is not Cube!", "メッシュがCubeではありません！");
             public static istring SetCubeMesh => new istring("Set Cube mesh", "Cubeメッシュを設定");
             public static istring BoundSmall => new istring("The cube mesh behaves like a bounding box. Its scale might be small.", "Cubeメッシュはバウンディングボックスのようにふるまいます。スケールが小さいかもしれません。");
@@ -92,6 +93,10 @@ namespace Narazaka.Unity.InfoViewShader.Editor
 
         public override void OnInspectorGUI()
         {
+#if !NARAZAKA_INFOVIEWSHADER_HAS_NDMF
+            EditorGUILayout.HelpBox(T.RequireNDMF1_5, MessageType.Error);
+#endif
+
             var component = target as Component;
             if (meshFilter != null && meshFilter.sharedMesh != cube)
             {
