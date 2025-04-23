@@ -32,6 +32,8 @@ https://github.com/Narazaka/InfoViewShader/releases/latest から `net.narazaka.
 
 - Modular Avatarをインストールすると、ローカル環境で非表示にする機能が使えるようになります。
 
+![Inspector](docs~/InfoViewShaderNDMFInspector.png)
+
 ### 一般的な場合
 
 Exampleフォルダに例があります。
