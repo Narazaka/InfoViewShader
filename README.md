@@ -60,6 +60,24 @@ Exampleフォルダに例があります。
 
 </details>
 
+## 更新履歴
+
+- 1.3.0
+  - 距離で非表示にする機能
+  - 最低限のGPU Instancing対応
+- 1.2.2
+  - NDMF 1.5が必要な旨を警告
+- 1.2.1
+  - Unity 2019に緩和
+- 1.2.0
+  - VRChatアバターにおいてローカルで非表示にする機能を追加
+  - NDMF言語選択UIを追加
+- 1.1.0
+  - NDMF対応
+  - lineシェーダーもCutout/Transparent対応
+- 1.0.0
+  - リリース
+
 ## License
 
 [Zlib License](LICENSE.txt)
