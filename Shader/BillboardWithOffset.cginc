@@ -1,5 +1,6 @@
 #pragma multi_compile _ _HIDE_BY_DISTANCE
 #pragma multi_compile_fog
+#pragma multi_compile_instancing
 
 #pragma vertex vert
 #include "UnityCG.cginc"
@@ -8,6 +9,7 @@ struct appdata
 {
     float4 vertex : POSITION;
     float2 uv : TEXCOORD0;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct v2f
@@ -29,6 +31,7 @@ float _ScaleY;
 
 v2f vert (appdata v)
 {
+    UNITY_SETUP_INSTANCE_ID(v);
     float3 scale = float3(
         length(unity_ObjectToWorld._m00_m10_m20),
         length(unity_ObjectToWorld._m01_m11_m21),
