@@ -11,8 +11,8 @@ Shader "InfoViewShader/BillboardConnectLine Transparent"
         [Header(Hide By Distance)]
         [Toggle(_HIDE_BY_DISTANCE)]
         _HideByDistance ("Hide By Distance", Float) = 0
-        _Hide_Distance ("Hide Distance", Float) = 10
-        _Hide_Distance_Fade_Area ("Hide Distance Fade Area", Float) = 1
+        _HideDistance ("Hide Distance", Float) = 10
+        _HideDistanceFadeArea ("Hide Distance Fade Area", Float) = 1
         [Header(Z Write)]
         [Space]
         [Toggle]

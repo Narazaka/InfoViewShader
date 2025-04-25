@@ -14,9 +14,9 @@ inline float2 mirrorFlip(float2 uv) {
 #endif
 
 #ifdef _HIDE_BY_DISTANCE
-float _Hide_Distance;
+float _HideDistance;
 #ifdef _HIDE_DISTANCE_FADE_AREA
-float _Hide_Distance_Fade_Area;
+float _HideDistanceFadeArea;
 #endif
 #endif
 
@@ -29,10 +29,10 @@ fixed4 frag (v2f i) : SV_Target
 #endif
 #ifdef _HIDE_BY_DISTANCE
 #ifdef _HIDE_DISTANCE_FADE_AREA
-    float fade = saturate(1 - (_Hide_Distance - i.cameraDistance) / _Hide_Distance_Fade_Area);
+    float fade = saturate(1 - (_HideDistance - i.cameraDistance) / _HideDistanceFadeArea);
     col.a *= 1 - fade;
 #else
-    clip(_Hide_Distance - i.cameraDistance);
+    clip(_HideDistance - i.cameraDistance);
 #endif
 #endif
 #ifdef _CUTOFF_COLOR
