@@ -15,10 +15,14 @@ namespace Narazaka.Unity.InfoViewShader.Editor
         SerializedProperty offset;
         SerializedProperty scale;
         SerializedProperty lineWidth;
+        SerializedProperty hideByDistance;
+        SerializedProperty hideDistance;
+        SerializedProperty hideDistanceFadeArea;
         SerializedProperty hideInLocal;
         RenderSettingGUI renderSetting;
         ShaderSettingGUI shaderSetting;
         ShaderSettingGUI lineShaderSetting;
+        SerializedProperty gpuInstancing;
 
         Mesh cube;
         MeshFilter _meshFilter;
@@ -61,10 +65,14 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             offset = serializedObject.FindProperty(nameof(InfoView.offset));
             scale = serializedObject.FindProperty(nameof(InfoView.scale));
             lineWidth = serializedObject.FindProperty(nameof(InfoView.lineWidth));
+            hideByDistance = serializedObject.FindProperty(nameof(InfoView.hideByDistance));
+            hideDistance = serializedObject.FindProperty(nameof(InfoView.hideDistance));
+            hideDistanceFadeArea = serializedObject.FindProperty(nameof(InfoView.hideDistanceFadeArea));
             hideInLocal = serializedObject.FindProperty(nameof(InfoView.hideInLocal));
             renderSetting = new RenderSettingGUI(serializedObject.FindProperty(nameof(InfoView.renderSetting)));
             shaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.shaderSetting)));
             lineShaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.lineShaderSetting)));
+            gpuInstancing = serializedObject.FindProperty(nameof(InfoView.gpuInstancing));
         }
 
         class T
@@ -82,6 +90,9 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             public static istring Scale => new istring("Scale", "スケール");
             public static istring ScaleDescription => new istring("Plate Scale", "プレートのスケール");
             public static istring LineWidth => new istring("Line Width", "ラインの幅");
+            public static istring HideByDistance => new istring("Hide by Distance", "距離で非表示");
+            public static istring HideDistance => new istring("Hide Distance", "非表示にする距離");
+            public static istring HideDistanceFadeArea => new istring("Hide Distance Fade", "非表示距離フェード");
             public static istring VRChatSettings => new istring("VRChat Settings", "VRChat設定");
             public static istring HideInLocal => new istring("Hide in Local", "ローカルで非表示");
             public static istring Cutoff => new istring("Alpha Cutoff", "Alpha Cutoff");
@@ -89,6 +100,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             public static istring Line => new istring("Line", "ライン");
             public static istring RenderSetting => new istring("Render Setting", "レンダリング設定");
             public static istring ShaderSetting => new istring("Shader Setting (Details)", "シェーダー設定 (詳細)");
+            public static istring GPUInstancing => new istring("GPU Instancing", "GPU インスタンシング");
         }
 
         public override void OnInspectorGUI()
@@ -136,6 +148,17 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             EditorGUILayout.PropertyField(scale, T.Scale.GUIContent);
             EditorGUILayout.HelpBox(T.ScaleDescription, MessageType.Info);
             EditorGUILayout.PropertyField(lineWidth, T.LineWidth.GUIContent);
+            EditorGUILayout.PropertyField(hideByDistance, T.HideByDistance.GUIContent);
+            if (hideByDistance.boolValue)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(hideDistance, T.HideDistance.GUIContent);
+                if (renderSetting.IsTransparentMode || shaderSetting.IsTransparent || lineShaderSetting.IsTransparent)
+                {
+                    EditorGUILayout.PropertyField(hideDistanceFadeArea, T.HideDistanceFadeArea.GUIContent);
+                }
+                EditorGUI.indentLevel--;
+            }
             EditorGUI.indentLevel--;
 
             DrawHeader(T.Plate);
@@ -170,6 +193,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             EditorGUI.BeginChangeCheck();
             EditorGUI.indentLevel++;
             renderSetting.OnGUI();
+            EditorGUILayout.PropertyField(gpuInstancing, T.GPUInstancing.GUIContent);
             EditorGUI.indentLevel--;
             if (EditorGUI.EndChangeCheck())
             {
@@ -184,7 +208,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             shaderSettingFoldout = EditorGUILayout.Foldout(shaderSettingFoldout, T.ShaderSetting, true);
             if (shaderSettingFoldout)
             {
-                EditorGUI.BeginDisabledGroup(renderSetting.renderSetupMode.enumValueIndex != (int)InfoView.RenderSetting.RenderSetupMode.Custom);
+                EditorGUI.BeginDisabledGroup(!renderSetting.IsCustomMode);
                 EditorGUI.indentLevel++;
                 EditorGUILayout.LabelField(T.Plate, EditorStyles.boldLabel);
                 EditorGUI.indentLevel++;
@@ -241,7 +265,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             {
                 EditorGUILayout.PropertyField(renderSetupMode, T.RenderSetupMode.GUIContent);
                 EditorGUILayout.HelpBox(T.RenderSetupModeDescription, MessageType.Info);
-                if (renderSetupMode.enumValueIndex == (int)InfoView.RenderSetting.RenderSetupMode.Custom)
+                if (IsCustomMode)
                 {
                     return;
                 }
@@ -249,7 +273,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
                 EditorGUILayout.HelpBox(T.ZTestAlwaysDescription, MessageType.Info);
                 EditorGUILayout.PropertyField(baseRenderQueue, T.BaseRenderQueue.GUIContent);
                 EditorGUILayout.HelpBox(T.BaseRenderQueueDescription, MessageType.Info);
-                if (renderSetupMode.enumValueIndex == (int)InfoView.RenderSetting.RenderSetupMode.Transparent || !zTestAlways.boolValue)
+                if (IsTransparentMode || !zTestAlways.boolValue)
                 {
                     EditorGUILayout.PropertyField(maskRef, T.MaskRef.GUIContent);
                     EditorGUILayout.HelpBox(T.MaskRefDescription, MessageType.Info);
@@ -270,6 +294,9 @@ namespace Narazaka.Unity.InfoViewShader.Editor
                 };
                 return renderSetting;
             }
+
+            public bool IsTransparentMode => renderSetupMode.enumValueIndex == (int)InfoView.RenderSetting.RenderSetupMode.Transparent;
+            public bool IsCustomMode => renderSetupMode.enumValueIndex == (int)InfoView.RenderSetting.RenderSetupMode.Custom;
 
             class T
             {
@@ -362,6 +389,8 @@ namespace Narazaka.Unity.InfoViewShader.Editor
                 stencilWriteMask.intValue = shaderSetting.stencilWriteMask;
                 renderQueue.intValue = shaderSetting.renderQueue;
             }
+
+            public bool IsTransparent => shaderType.enumValueIndex == (int)InfoView.ShaderSetting.ShaderType.Transparent;
         }
     }
 }

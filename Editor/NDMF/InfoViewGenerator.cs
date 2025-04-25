@@ -54,7 +54,8 @@ namespace Narazaka.Unity.InfoViewShader.Editor
         public static Material[] GenerateMaterials(InfoView infoView)
         {
             var (plateShaderSetting, lineShaderSetting) = infoView.effectiveShaderSettingPair;
-            var plate = new Material(PlateShader(plateShaderSetting.shaderType));
+            var plateShader = PlateShader(plateShaderSetting.shaderType);
+            var plate = new Material(plateShader);
             plate.name = $"InfoView_{infoView.name}_Plate";
             plate.SetTexture("_MainTex", infoView.mainTex);
             plate.SetColor("_Color", infoView.color);
@@ -63,9 +64,15 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             plate.SetFloat("_OffsetY", infoView.offset.y);
             plate.SetFloat("_ScaleX", infoView.scale.x);
             plate.SetFloat("_ScaleY", infoView.scale.y);
+            plate.SetFloat("_HideByDistance", infoView.hideByDistance ? 1 : 0);
+            plate.SetKeyword(new UnityEngine.Rendering.LocalKeyword(plateShader, "_HIDE_BY_DISTANCE"), infoView.hideByDistance);
+            plate.SetFloat("_HideDistance", infoView.hideDistance);
+            plate.SetFloat("_HideDistanceFadeArea", infoView.hideDistanceFadeArea);
+            plate.enableInstancing = infoView.gpuInstancing;
             SetShaderSetting(plateShaderSetting, plate);
 
-            var line = new Material(LineShader(lineShaderSetting.shaderType));
+            var lineShader = LineShader(lineShaderSetting.shaderType);
+            var line = new Material(lineShader);
             line.name = $"InfoView_{infoView.name}_Line";
             line.SetTexture("_MainTex", infoView.lineMainTex);
             line.SetColor("_Color", infoView.lineColor);
@@ -73,6 +80,11 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             line.SetFloat("_OffsetX", infoView.offset.x);
             line.SetFloat("_OffsetY", infoView.offset.y);
             line.SetFloat("_LineWidth", infoView.lineWidth);
+            line.SetFloat("_HideByDistance", infoView.hideByDistance ? 1 : 0);
+            line.SetKeyword(new UnityEngine.Rendering.LocalKeyword(lineShader, "_HIDE_BY_DISTANCE"), infoView.hideByDistance);
+            line.SetFloat("_HideDistance", infoView.hideDistance);
+            line.SetFloat("_HideDistanceFadeArea", infoView.hideDistanceFadeArea);
+            line.enableInstancing = infoView.gpuInstancing;
             SetShaderSetting(lineShaderSetting, line);
 
             return new Material[] { plate, line };

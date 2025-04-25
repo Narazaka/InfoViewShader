@@ -21,10 +21,14 @@ namespace Narazaka.Unity.InfoViewShader
         public Vector2 offset = Vector2.one;
         public Vector2 scale = Vector2.one;
         public float lineWidth = 0.01f;
+        public bool hideByDistance;
+        public float hideDistance = 10f;
+        public float hideDistanceFadeArea = 1f;
         public bool hideInLocal = false;
         public RenderSetting renderSetting = new RenderSetting();
         public ShaderSetting shaderSetting = new ShaderSetting { renderQueue = 2999 };
         public ShaderSetting lineShaderSetting = new ShaderSetting { renderQueue = 2998 };
+        public bool gpuInstancing = false;
 
         public (ShaderSetting plate, ShaderSetting line) effectiveShaderSettingPair
         {
