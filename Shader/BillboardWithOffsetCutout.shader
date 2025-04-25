@@ -9,6 +9,10 @@ Shader "InfoViewShader/BillboardWithOffset Cutout"
         _OffsetY ("OffsetY", Float) = 1
         _ScaleX ("ScaleX", Float) = 1
         _ScaleY ("ScaleY", Float) = 1
+        [Header(Hide By Distance)]
+        [Toggle(_HIDE_BY_DISTANCE)]
+        _HideByDistance ("Hide By Distance", Float) = 0
+        _Hide_Distance ("Hide Distance", Float) = 10
         [Header(Z Write)]
         [Space]
         [Toggle]

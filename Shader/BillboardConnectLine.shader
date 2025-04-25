@@ -7,6 +7,10 @@ Shader "InfoViewShader/BillboardConnectLine"
         _OffsetX ("End X", Float) = 1
         _OffsetY ("End Y", Float) = 1
         _LineWidth ("Line Width", Float) = 0.01
+        [Header(Hide By Distance)]
+        [Toggle(_HIDE_BY_DISTANCE)]
+        _HideByDistance ("Hide By Distance", Float) = 0
+        _Hide_Distance ("Hide Distance", Float) = 10
         [Header(Z Write)]
         [Space]
         [Toggle]

@@ -8,6 +8,11 @@ Shader "InfoViewShader/BillboardConnectLine Transparent"
         _OffsetX ("End X", Float) = 1
         _OffsetY ("End Y", Float) = 1
         _LineWidth ("Line Width", Float) = 0.01
+        [Header(Hide By Distance)]
+        [Toggle(_HIDE_BY_DISTANCE)]
+        _HideByDistance ("Hide By Distance", Float) = 0
+        _Hide_Distance ("Hide Distance", Float) = 10
+        _Hide_Distance_Fade_Area ("Hide Distance Fade Area", Float) = 1
         [Header(Z Write)]
         [Space]
         [Toggle]
@@ -49,6 +54,7 @@ Shader "InfoViewShader/BillboardConnectLine Transparent"
         {
             CGPROGRAM
             #include "./BillboardConnectLine.cginc"
+            #define _HIDE_DISTANCE_FADE_AREA
             #define _CUTOFF_COLOR
             #include "./Vert.cginc"
             ENDCG

@@ -1,6 +1,6 @@
-// make fog work
+#pragma multi_compile _ _HIDE_BY_DISTANCE
 #pragma multi_compile_fog
-            
+
 #pragma vertex vert
 #include "UnityCG.cginc"
 
@@ -15,6 +15,9 @@ struct v2f
     float2 uv : TEXCOORD0;
     UNITY_FOG_COORDS(1)
     float4 vertex : SV_POSITION;
+#ifdef _HIDE_BY_DISTANCE
+    float cameraDistance : COLOR1;
+#endif
 };
 
 sampler2D _MainTex;
@@ -56,5 +59,8 @@ v2f vert (appdata v)
     o.vertex = mul(UNITY_MATRIX_VP, worldPos);
     UNITY_TRANSFER_FOG(o,o.vertex);
     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+#ifdef _HIDE_BY_DISTANCE
+    o.cameraDistance = length(rootWithOffsetToCamera);
+#endif
     return o;
 }
