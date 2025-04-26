@@ -62,6 +62,8 @@ Exampleフォルダに例があります。
 
 ## 更新履歴
 
+- 1.3.1
+  - Single-pass instanced (SPS-I) 対応
 - 1.3.0
   - 距離で非表示にする機能
   - 最低限のGPU Instancing対応
