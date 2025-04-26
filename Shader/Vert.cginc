@@ -5,12 +5,31 @@ float4 _Color;
 float _Cutoff;
 #endif
 
-#ifdef _MIRROR_FLIP
+float _VRChatCameraMode;
 float _VRChatMirrorMode;
 float CVRRenderingCam;
 
+inline bool isMirror() {
+    return _VRChatMirrorMode > 0 || CVRRenderingCam == 2;
+}
+
+inline bool isCamera() {
+    return _VRChatCameraMode == 1 || _VRChatCameraMode == 2 || CVRRenderingCam == 1;
+}
+
+#pragma multi_compile _ _HIDE_IN_LOCAL
+#ifdef _HIDE_IN_LOCAL
+float _ShowInLocalHandCamera;
+float _IsLocal;
+
+inline void clipIfLocal() {
+    clip(isMirror() + (_ShowInLocalHandCamera > 0 ? isCamera() : 0) - _IsLocal);
+}
+#endif
+
+#ifdef _MIRROR_FLIP
 inline float2 mirrorFlip(float2 uv) {
-    return lerp(uv, float2(1 - uv.x, uv.y), _VRChatMirrorMode > 0 || CVRRenderingCam == 2);
+    return lerp(uv, float2(1 - uv.x, uv.y), isMirror());
 }
 #endif
 
@@ -35,6 +54,10 @@ fixed4 frag (v2f i) : SV_Target
 #else
     clip(_HideDistance - i.cameraDistance);
 #endif
+#endif
+
+#ifdef _HIDE_IN_LOCAL
+    clipIfLocal();
 #endif
 #ifdef _CUTOFF_COLOR
     clip(col.a - _Cutoff);

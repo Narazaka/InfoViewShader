@@ -13,6 +13,11 @@ Shader "InfoViewShader/BillboardWithOffset Cutout"
         [Toggle(_HIDE_BY_DISTANCE)]
         _HideByDistance ("Hide By Distance", Float) = 0
         _HideDistance ("Hide Distance", Float) = 10
+        [Header(Hide In Local)]
+        [Toggle(_HIDE_IN_LOCAL)]
+        _HideInLocal ("Hide In Local", Float) = 0
+        _ShowInLocalHandCamera ("Show In Local Hand Camera", Float) = 1
+        _IsLocal ("Is Local (set by anim etc.)", Float) = 0
         [Header(Z Write)]
         [Space]
         [Toggle]

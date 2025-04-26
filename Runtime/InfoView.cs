@@ -25,6 +25,7 @@ namespace Narazaka.Unity.InfoViewShader
         public float hideDistance = 10f;
         public float hideDistanceFadeArea = 1f;
         public bool hideInLocal = false;
+        public bool showInLocalHandCamera = true;
         public RenderSetting renderSetting = new RenderSetting();
         public ShaderSetting shaderSetting = new ShaderSetting { renderQueue = 2999 };
         public ShaderSetting lineShaderSetting = new ShaderSetting { renderQueue = 2998 };

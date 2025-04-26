@@ -68,6 +68,9 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             plate.SetKeyword(new UnityEngine.Rendering.LocalKeyword(plateShader, "_HIDE_BY_DISTANCE"), infoView.hideByDistance);
             plate.SetFloat("_HideDistance", infoView.hideDistance);
             plate.SetFloat("_HideDistanceFadeArea", infoView.hideDistanceFadeArea);
+            plate.SetFloat("_HideInLocal", infoView.hideInLocal ? 1 : 0);
+            plate.SetKeyword(new UnityEngine.Rendering.LocalKeyword(plateShader, "_HIDE_IN_LOCAL"), infoView.hideInLocal);
+            plate.SetFloat("_ShowInLocalHandCamera", infoView.showInLocalHandCamera ? 1 : 0);
             plate.enableInstancing = infoView.gpuInstancing;
             SetShaderSetting(plateShaderSetting, plate);
 
@@ -84,6 +87,9 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             line.SetKeyword(new UnityEngine.Rendering.LocalKeyword(lineShader, "_HIDE_BY_DISTANCE"), infoView.hideByDistance);
             line.SetFloat("_HideDistance", infoView.hideDistance);
             line.SetFloat("_HideDistanceFadeArea", infoView.hideDistanceFadeArea);
+            line.SetFloat("_HideInLocal", infoView.hideInLocal ? 1 : 0);
+            line.SetKeyword(new UnityEngine.Rendering.LocalKeyword(lineShader, "_HIDE_IN_LOCAL"), infoView.hideInLocal);
+            line.SetFloat("_ShowInLocalHandCamera", infoView.showInLocalHandCamera ? 1 : 0);
             line.enableInstancing = infoView.gpuInstancing;
             SetShaderSetting(lineShaderSetting, line);
 

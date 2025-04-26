@@ -19,6 +19,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
         SerializedProperty hideDistance;
         SerializedProperty hideDistanceFadeArea;
         SerializedProperty hideInLocal;
+        SerializedProperty showInLocalHandCamera;
         RenderSettingGUI renderSetting;
         ShaderSettingGUI shaderSetting;
         ShaderSettingGUI lineShaderSetting;
@@ -69,6 +70,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             hideDistance = serializedObject.FindProperty(nameof(InfoView.hideDistance));
             hideDistanceFadeArea = serializedObject.FindProperty(nameof(InfoView.hideDistanceFadeArea));
             hideInLocal = serializedObject.FindProperty(nameof(InfoView.hideInLocal));
+            showInLocalHandCamera = serializedObject.FindProperty(nameof(InfoView.showInLocalHandCamera));
             renderSetting = new RenderSettingGUI(serializedObject.FindProperty(nameof(InfoView.renderSetting)));
             shaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.shaderSetting)));
             lineShaderSetting = new ShaderSettingGUI(serializedObject.FindProperty(nameof(InfoView.lineShaderSetting)));
@@ -95,6 +97,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             public static istring HideDistanceFadeArea => new istring("Hide Distance Fade", "非表示距離フェード");
             public static istring VRChatSettings => new istring("VRChat Settings", "VRChat設定");
             public static istring HideInLocal => new istring("Hide in Local", "ローカルで非表示");
+            public static istring ShowInLocalHandCamera => new istring("Show in Local Hand Camera", "ローカルハンドカメラで表示");
             public static istring Cutoff => new istring("Alpha Cutoff", "Alpha Cutoff");
             public static istring Plate => new istring("Plate", "プレート");
             public static istring Line => new istring("Line", "ライン");
@@ -185,6 +188,12 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             DrawHeader(T.VRChatSettings);
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(hideInLocal, T.HideInLocal.GUIContent);
+            if (hideInLocal.boolValue)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(showInLocalHandCamera, T.ShowInLocalHandCamera.GUIContent);
+                EditorGUI.indentLevel--;
+            }
             EditorGUI.indentLevel--;
 #endif
 

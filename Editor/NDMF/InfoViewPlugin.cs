@@ -68,7 +68,7 @@ namespace Narazaka.Unity.InfoViewShader.Editor
             foreach (var meshRenderer in meshRenderers)
             {
                 var path = UnityEditor.AnimationUtility.CalculateTransformPath(meshRenderer.transform, avatarRoot);
-                hideClip.SetCurve(path, typeof(MeshRenderer), "m_Enabled", new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 0)));
+                hideClip.SetCurve(path, typeof(MeshRenderer), "material._IsLocal", new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1)));
             }
             var hideState = new UnityEditor.Animations.AnimatorState
             {
