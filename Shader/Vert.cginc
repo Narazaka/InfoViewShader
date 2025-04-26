@@ -7,9 +7,10 @@ float _Cutoff;
 
 #ifdef _MIRROR_FLIP
 float _VRChatMirrorMode;
+float CVRRenderingCam;
 
 inline float2 mirrorFlip(float2 uv) {
-    return lerp(uv, float2(1 - uv.x, uv.y), _VRChatMirrorMode > 0);
+    return lerp(uv, float2(1 - uv.x, uv.y), _VRChatMirrorMode > 0 || CVRRenderingCam == 2);
 }
 #endif
 
