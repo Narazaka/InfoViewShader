@@ -20,6 +20,7 @@ struct v2f
 #ifdef _HIDE_BY_DISTANCE
     float cameraDistance : COLOR1;
 #endif
+    UNITY_VERTEX_OUTPUT_STEREO
 };
 
 sampler2D _MainTex;
@@ -31,7 +32,10 @@ float _ScaleY;
 
 v2f vert (appdata v)
 {
+    v2f o;
     UNITY_SETUP_INSTANCE_ID(v);
+    UNITY_INITIALIZE_OUTPUT(v2f, o);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
     float3 scale = float3(
         length(unity_ObjectToWorld._m00_m10_m20),
         length(unity_ObjectToWorld._m01_m11_m21),
@@ -58,7 +62,6 @@ v2f vert (appdata v)
     float3 vertexPos = - rightWithOffset * v.vertex.x * _ScaleX - up * v.vertex.y * _ScaleY;
     float4 worldPos = float4(vertexPos + rootWithOffsetPos, 1);
 
-    v2f o;
     o.vertex = mul(UNITY_MATRIX_VP, worldPos);
     UNITY_TRANSFER_FOG(o,o.vertex);
     o.uv = TRANSFORM_TEX(v.uv, _MainTex);
